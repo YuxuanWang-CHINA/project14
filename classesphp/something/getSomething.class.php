@@ -5,13 +5,18 @@
 	{
 		function __construct()
 		{
+		}
 
+		public function getDatetimeUniform()
+		{
+			$date = new \DateTime();
+			return $date->format('Y-m-d H:i:s');
 		}
 
 		public function getDateUniform()
 		{
 			$date = new \DateTime();
-			return $date->format('Y-m-d H:i:s');
+			return $date->format('Y-m-d');
 		}
 	}
 ?>

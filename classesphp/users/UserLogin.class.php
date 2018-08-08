@@ -9,22 +9,22 @@
 		function __construct($username_input, $password_input)
 		{
 			$this->username = $username_input;
-			$password = md5($password_input);
-			$password_back = $this->loginCheck($password);
-			if ($password == $password_back) {
+			$check_back = $this->loginCheck($password_input);
+			if ($check_back == TRUE)
+			{
 				$this->checkRight();
 			} else {
 				$this->checkWrong();
 			}
 		}
 
-		private function loginCheck($password_md5)
+		private function loginCheck($password)
 		{
 			include_once "../doing/SetOfMysql.class.php";
 			$go_mysql = new \Project\Doing\SetOfMysql();
-			$return_password_md5 = $go_mysql->reLoginCheck($this->username);
+			$return_bool = $go_mysql->reLoginCheck($this->username, $password);
 			unset($go_mysql);
-			return $return_password_md5;
+			return $return_bool;
 		}
 
 		private function checkRight()
@@ -43,7 +43,8 @@
 		{
 			include_once "../doing/SetOfMysql.class.php";
 			$go_mysql = new \Project\Doing\SetOfMysql();
-			$go_mysql->reAddLog($this->username);
+			$go_mysql->reAddLoginLog($this->username);
+			unset($go_mysql);
 		}
 
 		public function test_show()
@@ -53,5 +54,5 @@
 	}
 ?>
 <?php
-$asd=new UserLogin("wyx","154yjf6jf");
+//$asd=new UserLogin("wyx","154yjf6jf");
 ?>

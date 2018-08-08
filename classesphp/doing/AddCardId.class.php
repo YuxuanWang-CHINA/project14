@@ -5,6 +5,11 @@
 	{
 		function __construct($username)
 		{
+			$this->addToXml($username);
+		}
+
+		private function addToXml($username)
+		{
 			$file_path = "../../changes/card_id.xml";
 			$xml_card_id = new \SimpleXMLElement($file_path, NULL, TRUE);
 			$new_id_now = $xml_card_id->id_now + 1;
@@ -18,6 +23,7 @@
 
 			$xml_file=$xml_card_id->asXML();
 			file_put_contents($file_path, $xml_file);
+
 		}
 	}
 ?>
