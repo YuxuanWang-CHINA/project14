@@ -33,20 +33,25 @@
 
 		public function reAddLoginLog($username)
 		{
-			include_once "../something/getSomething.class.php";
-			$get_thing = new \Project\Something\getSomething();
-			$upload_time = $get_thing->getDatetimeUniform();
+			include_once "../something/GetSomething.class.php";
+			include_once "../../configs/things_list.php";
+			$get_thing = new \Project\Something\GetSomething(\Project\Something\UDATETIME);
+			$upload_time = $get_thing->show_thing();
 			unset($get_thing);
 			$sql = "UPDATE user SET last_login='".$upload_time."' WHERE user_name='".$username."'";
 			$this->connect->query($sql);
 		}
 
-		public function reUserLogin($username_input, $password_input)
+		public function reUserAdd($username_input, $password_input)
 		{
-			include_once "../something/getSomething.class.php";
-			$get_thing = new \Project\Something\getSomething();
-			$now_date = $get_thing->getDateUniform();
-			$now_datetime = $get_thing->getDatetimeUniform();
+			include_once "../something/GetSomething.class.php";
+			include_once "../../configs/things_list.php";	
+			$object_now_date = new \Project\Something\GetSomething(\Project\Something\UDATE);
+			$object_now_datetime = new \Project\Something\GetSomething(\Project\Something\UDATETIME);
+			$now_date = $object_now_date->show_thing();
+			$now_datetime = $object_now_datetime->show_thing();
+			unset($object_now_date);
+			unset($object_now_datetime);
 			$sql = "INSERT INTO user (user_name,passwords,create_time,last_login) VALUES ('".$username_input."','".$password_input."','".$now_date."','".$now_datetime."')";
 			$this->connect->query($sql);
 		}

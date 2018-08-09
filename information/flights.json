@@ -7,7 +7,7 @@
 			"i_must" : "better"
 		},
 		{
-			"i_name" : "airline_compony",
+			"i_name" : "airline_company",
 			"i_type" : "varchar",
 			"i_must" : "no"
 		},

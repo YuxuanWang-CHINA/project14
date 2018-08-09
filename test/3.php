@@ -1,18 +1,11 @@
 <?php
-	namespace Project\Something;
+const UDATE = "getDateUniform";
 
-	final class GetSomething
+	final class getSomething
 	{
-		private $re_thing;
-
 		function __construct($what)
 		{
-			$this->re_thing = $this->$what();
-		}
-
-		function show_thing()
-		{
-			return $this->re_thing;
+			echo $this->$what();
 		}
 
 		public function getDatetimeUniform()
@@ -27,8 +20,6 @@
 			return $date->format('Y-m-d');
 		}
 	}
-?>
-<?php
-//$asd=new getSomething();
-//$asd->getDateUniform();
+
+$asd=new getSomething(UDATE);
 ?>

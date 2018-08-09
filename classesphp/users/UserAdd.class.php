@@ -1,14 +1,14 @@
 <?php
 	namespace Project\Users;
 
-	class UserLogin
+	class UserAdd
 	{
 		function __construct($username_use ,$password_use)
 		{
 			include_once "../doing/SetOfMysql.class.php";
 			$password_create = $this->createPassword($password_use);
 			$go_mysql = new \Project\Doing\SetOfMysql();
-			$go_mysql->reUserLogin($username_use, $password_create);
+			$go_mysql->reUserAdd($username_use, $password_create);
 			unset($go_mysql);
 		}
 
@@ -20,5 +20,5 @@
 	}
 ?>
 <?php
-//$asd=new UserLogin("pc","20030601");
+//$asd=new UserAdd("wyx","154yjf6jf");
 ?>
