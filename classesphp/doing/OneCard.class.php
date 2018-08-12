@@ -1,13 +1,18 @@
 <?php
 	namespace Project\Doing;
+	session_start();
 
 	class OneCard
 	{
+		public $card_type;
 		public $card_content;
+		public $username;
 
 		function __construct($card_type)
 		{
-			$file_path = "../../information/".$card_type.".json";
+			$this->username = $_SESSION['username'];
+			$this->card_type = $card_type;
+			$file_path = "../../information/".$this->card_type.".json";
 			$file_string = file_get_contents($file_path);
 			$this->card_content = json_decode($file_string);
 		}
@@ -43,11 +48,21 @@
 			return $read_json_array;
 		}
 
-
-		public function test_show()
+		protected function makeArrayToWords($from_array)
 		{
-			var_dump($this->getMysqlColumn());
+			$to_string = "";
+			$all_number = count($from_array);
+			for ($i = 0; $i<$all_number; $i++) {
+				$to_string = $to_string."'".$from_array[$i]."',";
+			}
+			$to_string = rtrim($to_string, ",");
+			return $to_string;
 		}
+
+		//public function test_show()
+		//{
+		//	var_dump($this->getMysqlColumn());
+		//}
 	}
 ?>
 <?php

@@ -38,7 +38,7 @@
 			$get_thing = new \Project\Something\GetSomething(\Project\Something\UDATETIME);
 			$upload_time = $get_thing->show_thing();
 			unset($get_thing);
-			$sql = "UPDATE user SET last_login='".$upload_time."' WHERE user_name='".$username."'";
+			$sql = "UPDATE user SET last_login='".$upload_time."' WHERE user_name='".$username."';";
 			$this->connect->query($sql);
 		}
 
@@ -52,7 +52,19 @@
 			$now_datetime = $object_now_datetime->show_thing();
 			unset($object_now_date);
 			unset($object_now_datetime);
-			$sql = "INSERT INTO user (user_name,passwords,create_time,last_login) VALUES ('".$username_input."','".$password_input."','".$now_date."','".$now_datetime."')";
+			$sql = "INSERT INTO user (user_name,passwords,create_time,last_login) VALUES ('".$username_input."','".$password_input."','".$now_date."','".$now_datetime."');";
+			$this->connect->query($sql);
+		}
+
+		public function reAddLogToMysql($username, $card_type, $id_value)
+		{
+			include_once "../something/GetSomething.class.php";
+			include_once "../../configs/things_list.php";
+			$get_thing = new \Project\Something\GetSomething(\Project\Something\UDATETIME);
+			$upload_time = $get_thing->show_thing();
+			unset($get_thing);
+			$logs_value = md5($id_value);
+			$sql = "INSERT INTO user_logs VALUES ('".$id_value."','".$logs_value."','".$username."','".$card_type."','".$upload_time."');";
 			$this->connect->query($sql);
 		}
 	}

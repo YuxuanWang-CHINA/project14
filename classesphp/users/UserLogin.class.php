@@ -54,5 +54,5 @@
 	}
 ?>
 <?php
-//$asd=new UserLogin("wyx","154yjf6jf");
+$asd=new UserLogin("wyx","154yjf6jf");
 ?>
