@@ -17,11 +17,16 @@
 		private function insertIntoMysql($insert_array)
 		{
 			$the_columns = $this->makeCorrectString($insert_array)[1];
+			$the_columns = str_replace("'", "", $the_columns);
 			$end_table_value = $this->endInputArray();
 			$front_table_value = $this->makeCorrectString($insert_array)[0];
 			$all_value = $front_table_value.",".$end_table_value;
-			var_dump($all_value);
-			var_dump($the_columns);
+			//var_dump($all_value);
+			//var_dump($the_columns);
+			include_once "../doing/SetOfMysql.class.php";
+			$go_mysql = new \Project\Doing\SetOfMysql();
+			$go_mysql->reInsertIntoMysql($this->card_type, $the_columns, $all_value);
+			unset($go_mysql);
 		}
 
 		//处理输入数组,返回2个一个值一个行
@@ -31,8 +36,8 @@
 			$key_table_array = $this->getTableFront();
 			$key_insert_array = array_keys($insert_array);
 			$key_input_yes = array_intersect($key_table_array, $key_insert_array);//取交集
-			$key_input_none = array_diff($key_table_array, $key_insert_array);//取差集
-
+			$key_input_none = array_values(array_diff($key_table_array, $key_insert_array));//取差集
+			//var_dump($key_input_none);
 			$all_number = count($key_input_none);
 			for ($i = 0; $i < $all_number; $i++) {
 				$key = array_search($key_input_none[$i], $the_columns);
@@ -87,14 +92,14 @@
 		{
 			//$this->getId();
 			//$this->createLog();
-			$this->insertIntoMysql($arr);
+			//$this->insertIntoMysql($arr);
 		}
 	}
 ?>
 
 <?php
-$asdf=array("flight_number"=>"CA4590","airline_company"=>"中国国航","when_to_fly"=>"0920","the_date"=>"20180813","when_to_arrive"=>"1205");
+//$asdf=array("flight_number"=>"CA4590","airline_company"=>"中国国航","when_to_fly"=>"0920","the_date"=>"20180813","when_to_arrive"=>"1205");
 
-$asd=new AddACard("flights");
-$asd->test_show($asdf);
+//$asd=new AddACard("flights");
+//$asd->commitChange($asdf);
 ?>

@@ -67,6 +67,20 @@
 			$sql = "INSERT INTO user_logs VALUES ('".$id_value."','".$logs_value."','".$username."','".$card_type."','".$upload_time."');";
 			$this->connect->query($sql);
 		}
+
+		public function reInsertIntoMysql($card_type, $the_columns, $the_values)
+		{
+			$sql = "INSERT INTO ".$card_type." (".$the_columns.") VALUES (".$the_values.");";
+			$this->connect->query($sql);
+		}
+
+		public function reFindUserCards($username, $numbers)
+		{
+			$sql = "SELECT * FROM user_logs WHERE user='".$username. "' LIMIT ".$numbers;
+			$mysql_result = $this->connect->query($sql);
+			$return_array = $mysql_result->fetch_array();
+			return $return_array;	
+		}
 	}
 ?>
 <?php

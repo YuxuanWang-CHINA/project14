@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--MD5-->
 <records>
-	<id_now>1</id_now>
+	<id_now>0</id_now>
 	<group>
 		<id_pub>0</id_pub>
 		<user_name>void</user_name>
 	</group>
-<group><id_pub>1</id_pub><user_name>wyx</user_name></group></records>
+</records>

@@ -54,7 +54,7 @@
 			$id_new = $id_now + 1;
 			$return_array[0] = $id_new;
 			$return_array[1] = md5($id_new);
-			return $return_array;
+			return $id_new;
 		}
 	}
 ?>
