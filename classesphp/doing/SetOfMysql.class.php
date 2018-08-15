@@ -76,10 +76,18 @@
 
 		public function reFindUserCards($username, $numbers)
 		{
-			$sql = "SELECT * FROM user_logs WHERE user='".$username. "' LIMIT ".$numbers;
+			$sql = "SELECT logs,type FROM user_logs WHERE user='".$username. "' LIMIT ".$numbers;
 			$mysql_result = $this->connect->query($sql);
-			$return_array = $mysql_result->fetch_array();
+			$return_array = $mysql_result->fetch_all(MYSQLI_ASSOC);
 			return $return_array;	
+		}
+
+		public function reReadOne($card_type, $log_name)
+		{
+			$sql = "SELECT * FROM ".$card_type." WHERE log IN (".$log_name.");";
+			$mysql_result = $this->connect->query($sql);
+			$return_array = $mysql_result->fetch_all(MYSQLI_ASSOC);
+			return $return_array;
 		}
 	}
 ?>

@@ -41,7 +41,7 @@
 
 		private function addLogToMysql($username, $card_type, $id_value)
 		{
-			include_once "../doing/SetOfMysql.class.php";
+			include_once "./SetOfMysql.class.php";
 			$go_mysql = new \Project\Doing\SetOfMysql();
 			$go_mysql->reAddLogToMysql($username, $card_type, $id_value);
 			unset($go_mysql);

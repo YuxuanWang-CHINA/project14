@@ -23,7 +23,7 @@
 			$all_value = $front_table_value.",".$end_table_value;
 			//var_dump($all_value);
 			//var_dump($the_columns);
-			include_once "../doing/SetOfMysql.class.php";
+			include_once "./SetOfMysql.class.php";
 			$go_mysql = new \Project\Doing\SetOfMysql();
 			$go_mysql->reInsertIntoMysql($this->card_type, $the_columns, $all_value);
 			unset($go_mysql);
@@ -98,8 +98,8 @@
 ?>
 
 <?php
-//$asdf=array("flight_number"=>"CA4590","airline_company"=>"中国国航","when_to_fly"=>"0920","the_date"=>"20180813","when_to_arrive"=>"1205");
+$asdf=array("train_number"=>"G7140","when_to_fly"=>"1614","the_date"=>"20180819");
 
-//$asd=new AddACard("flights");
-//$asd->commitChange($asdf);
+$asd=new AddACard("trains");
+$asd->commitChange($asdf);
 ?>
