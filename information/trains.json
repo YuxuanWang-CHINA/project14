@@ -1,0 +1,30 @@
+{
+	"cardname" : "trains",
+	"information" : [
+		{
+			"i_name" : "train_number",
+			"i_type" : "varchar",
+			"i_must" : "better"
+		},
+		{
+			"i_name" : "when_to_fly",
+			"i_type" : "int",
+			"i_must" : "must"
+		},
+		{
+			"i_name" : "the_date",
+			"i_type" : "int",
+			"i_must" : "must"
+		},
+		{
+			"i_name" : "when_to_arrive",
+			"i_type" : "int",
+			"i_must" : "no"
+		},
+		{
+			"i_name" : "the_notice",
+			"i_type" : "text",
+			"i_must" : "no"
+		}
+	]
+}
