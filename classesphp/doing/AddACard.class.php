@@ -41,9 +41,9 @@
 			$all_number = count($key_input_none);
 			for ($i = 0; $i < $all_number; $i++) {
 				$key = array_search($key_input_none[$i], $the_columns);
-				array_splice($the_columns, $key, 1);	
+				array_splice($the_columns, $key, 1);
 			}
-			
+
 			$insert_string = $this->makeArrayToWords(array_values($insert_array));
 			$return_array = array();
 			$return_array[0] = $insert_string;
@@ -62,7 +62,7 @@
 
 		//对于模块数据库表的表格结尾值
 		private function endInputArray()
-		{		
+		{
 			$logs_value = md5($this->id);
 			$user_value = $this->username;
 			$return_array = array($logs_value, $user_value);
@@ -70,7 +70,7 @@
 			return $return_string;
 		}
 
-		//第一步对应
+		//第二步对应
 		private function createLog()
 		{
 			include_once "./AddCardId.class.php";

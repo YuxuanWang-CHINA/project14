@@ -6,11 +6,13 @@
 	{
 		private $username;
 
-		public function getYours($numbers = 10)
+		public function getYours($userinput, $numbers = 10)
 		{
-			$this->username = $_SESSION['username'];
+			$this->username = $userinput;
 			$logs_array = $this->findUserCards($numbers);//第一步找到logs
-			$this->getAllCards($logs_array);
+			$final_result = $this->getAllCards($logs_array);
+			var_dump($final_result);
+			return $final_result;
 		}
 
 		private function findUserCards($numbers)
@@ -31,6 +33,7 @@
 			$logs_correct3 = array_keys($logs_correct2);
 			$all_types_number = count($logs_correct3);
 			//var_dump($logs_correct1);
+			$final_result = array();
 			for ($i = 0; $i < $all_types_number; $i++) {
 				$type = $logs_correct3[$i];
 				$logs_this_type = array_keys($logs_correct1, $type);
@@ -38,12 +41,17 @@
 				include_once("./ReadACard.class.php");
 				$object_read = new ReadACard($type);
 				$get_results = $object_read->readOne($logs_this_type);
-				var_dump($get_results);
+				$combination = array($type, $get_results);
+				array_push($final_result, $combination);
+				//var_dump($get_results);
+				//按类别输出
 			}
+			return $final_result;
+			//var_dump($final_result);
 		}
-	}	
+	}
 ?>
 <?php
 $asd=new ReadSomeCards();
-$asd->getYours();
+$asd->getYours("wyx");
 ?>
