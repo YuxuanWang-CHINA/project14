@@ -1,6 +1,5 @@
 <?php
 	namespace Project\Doing;
-	session_start();
 
 	final class ReadSomeCards
 	{
@@ -11,7 +10,7 @@
 			$this->username = $userinput;
 			$logs_array = $this->findUserCards($numbers);//第一步找到logs
 			$final_result = $this->getAllCards($logs_array);
-			var_dump($final_result);
+			//var_dump($final_result);
 			return $final_result;
 		}
 
